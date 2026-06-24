@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎬 电影票根生成器 · 棠荞</title>
+    <title>🎬 棠荞票根工坊 · 免费票根工具</title>
     <style>
         @font-face {
             font-family: '霞鹜文楷屏幕阅读版';
@@ -16,22 +16,8 @@
         .app { max-width: 1100px; width: 100%; background: white; border-radius: 32px; box-shadow: 0 20px 40px -12px rgba(0,0,0,0.2); padding: 30px; display: flex; flex-wrap: wrap; gap: 30px; }
         .form-panel { flex: 1 1 380px; min-width: 280px; max-height: 90vh; overflow-y: auto; padding-right: 5px; }
         .form-panel h2 { font-size: 26px; margin-bottom: 6px; color: #0f172a; }
-        .form-panel .sub { 
-            color: #64748b; 
-            margin-bottom: 20px; 
-            border-left: 4px solid #e11d48; 
-            padding-left: 12px;
-        }
-        .form-panel .sub .free-tag {
-            display: inline-block;
-            background: #d1fae5;
-            color: #065f46;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 2px 10px;
-            border-radius: 20px;
-            margin-left: 8px;
-        }
+        .form-panel .sub { color: #64748b; margin-bottom: 20px; border-left: 4px solid #e11d48; padding-left: 12px; }
+        .form-panel .sub .free-tag { display: inline-block; background: #d1fae5; color: #065f46; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 20px; margin-left: 8px; }
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-weight: 600; font-size: 13px; color: #334155; margin-bottom: 3px; }
         .form-group input, .form-group select { width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; transition: 0.2s; background: #fcfcfd; }
@@ -92,7 +78,7 @@
 <body>
 <div class="app">
     <div class="form-panel">
-        <h2>🎫 电影票根</h2>
+        <h2>🎫 棠荞票根工坊</h2>
         <div class="sub">
             智能输入 · 自动计算 · 灵活选择
             <span class="free-tag">✨ 永久免费 · 无需付费</span>
@@ -276,7 +262,7 @@
         <!-- 水印 -->
         <div class="form-group">
             <label>📝 水印文字</label>
-            <input type="text" id="watermarkText" value="本票根由🎬 电影票根生成器 · 棠荞生成">
+            <input type="text" id="watermarkText" value="本票根由🎬 棠荞票根工坊生成">
         </div>
         <div class="form-group">
             <label>水印颜色</label>
@@ -309,11 +295,16 @@
 <!-- 版权弹窗 -->
 <div class="modal-overlay" id="copyrightModal">
     <div class="modal-box">
-        <h3>🎫 棠荞 · 票根工具</h3>
+        <h3>🎫 棠荞票根工坊</h3>
         <div class="subh">© 2026 棠荞 保留所有权利</div>
         <p>本工具由 <strong>棠荞</strong> 独立开发，<strong>永久免费</strong> 供个人使用。</p>
-        <div class="highlight">❌ 严禁任何形式的商业售卖、捆绑销售或付费下载。<br>✅ 欢迎个人使用、分享、传播。</div>
-        <p style="font-size:14px; color:#64748b;">如需定制服务，请联系：<br><strong style="color:#e11d48;">yunshengqvq@qq.com</strong></p>
+        <div class="highlight">
+            ❌ 严禁任何形式的商业售卖、捆绑销售或付费下载。<br>
+            ✅ 欢迎个人使用、分享、传播。
+        </div>
+        <p style="font-size:14px; color:#64748b;">
+            本工具采用 CC BY-NC 4.0 许可证 · 详情见 LICENSE 文件
+        </p>
         <p style="font-size:13px; color:#94a3b8; border-top:1px solid #e2e8f0; padding-top:14px; margin-top:10px;">
             🖋️ 本工具使用的「霞鹜文楷屏幕阅读版」字体由 
             <a href="https://github.com/lxgw" target="_blank" style="color:#e11d48; text-decoration:none;">GitHub lxgw（落霞孤鹜）</a> 
@@ -325,11 +316,6 @@
 
 <script>
 (function() {
-    // ============================================================
-    // ★★★ 网站名称 ★★★
-    // ============================================================
-    const SITE_NAME = '棠荞';
-
     // ============================================================
     // 用户配置
     // ============================================================
@@ -454,9 +440,6 @@
         });
     }
 
-    // ============================================================
-    // 图片上传事件
-    // ============================================================
     function setupUploadWithClear(inputEl, previewEl, clearBtn, callback) {
         inputEl.addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -480,17 +463,12 @@
         });
     }
 
-    // 背景图
     setupUploadWithClear(bgInput, bgPreview, bgClearBtn, (img) => { bgImage = img; });
     setupClear(bgInput, bgPreview, bgClearBtn, () => { bgImage = null; });
 
-    // 形状蒙版
     shapeInput.addEventListener('change', function(e) {
         const file = e.target.files[0];
-        if (!file) {
-            shapeClearBtn.disabled = true;
-            return;
-        }
+        if (!file) { shapeClearBtn.disabled = true; return; }
         shapeClearBtn.disabled = false;
         updateShapeStatus('loading', '正在加载形状蒙版...');
         const reader = new FileReader();
@@ -503,14 +481,10 @@
                 updateShapeStatus('loaded', '形状蒙版加载成功！');
                 renderTicket();
             };
-            img.onerror = function() {
-                updateShapeStatus('not-loaded', '图片加载失败，请检查文件');
-            };
+            img.onerror = function() { updateShapeStatus('not-loaded', '图片加载失败，请检查文件'); };
             img.src = ev.target.result;
         };
-        reader.onerror = function() {
-            updateShapeStatus('not-loaded', '文件读取失败');
-        };
+        reader.onerror = function() { updateShapeStatus('not-loaded', '文件读取失败'); };
         reader.readAsDataURL(file);
     });
     setupClear(shapeInput, shapePreview, shapeClearBtn, () => {
@@ -518,15 +492,12 @@
         updateShapeStatus('not-loaded', '已清除形状蒙版');
     });
 
-    // 海报
     setupUploadWithClear(posterInput, posterPreview, posterClearBtn, (img) => { posterImage = img; });
     setupClear(posterInput, posterPreview, posterClearBtn, () => { posterImage = null; });
 
-    // 二维码
     setupUploadWithClear(qrInput, qrPreview, qrClearBtn, (img) => { qrImage = img; });
     setupClear(qrInput, qrPreview, qrClearBtn, () => { qrImage = null; });
 
-    // logo
     setupUploadWithClear(logoInput, logoPreview, logoClearBtn, (img) => { logoImage = img; });
     setupClear(logoInput, logoPreview, logoClearBtn, () => { logoImage = null; });
 
@@ -536,42 +507,27 @@
     document.getElementById('qrUploadArea').addEventListener('click', () => qrInput.click());
     document.getElementById('logoUploadArea').addEventListener('click', () => logoInput.click());
 
-    // ============================================================
-    // 形状状态更新
-    // ============================================================
     function updateShapeStatus(status, msg) {
         shapeStatus.className = 'status-badge ' + status;
         shapeStatus.textContent = status === 'loaded' ? '已加载' : status === 'loading' ? '加载中' : '未加载';
         shapeStatusText.textContent = msg;
     }
 
-    // ============================================================
-    // 模糊滑块联动
-    // ============================================================
     bgBlurAmount.addEventListener('input', function() {
         bgBlurLabel.textContent = this.value;
         renderTicket();
     });
 
-    // ============================================================
-    // 透明度滑块联动
-    // ============================================================
     watermarkOpacity.addEventListener('input', function() {
         watermarkOpacityLabel.textContent = parseFloat(this.value).toFixed(2);
         renderTicket();
     });
 
-    // ============================================================
-    // 辅助：获取输入值
-    // ============================================================
     function getVal(el) {
         if (!el) return '';
         return el.value || el.placeholder || '';
     }
 
-    // ============================================================
-    // 按钮切换功能
-    // ============================================================
     function setupModeGroup(group, callback) {
         const btns = group.querySelectorAll('.mode-btn');
         btns.forEach(btn => {
@@ -606,9 +562,6 @@
         }
     });
 
-    // ============================================================
-    // 生成年份下拉
-    // ============================================================
     function populateYearSelect() {
         const currentYear = new Date().getFullYear();
         const select = releaseYearSelect;
@@ -625,9 +578,6 @@
     }
     populateYearSelect();
 
-    // ============================================================
-    // 获取当前上映年份值
-    // ============================================================
     function getReleaseYear() {
         const activeBtn = yearModeGroup.querySelector('.mode-btn.active');
         if (activeBtn && activeBtn.dataset.mode === 'manual') {
@@ -638,9 +588,6 @@
         }
     }
 
-    // ============================================================
-    // 生成混合选项（数字 1-100 + 字母 A-Z）
-    // ============================================================
     function getMixedOptions() {
         const options = [];
         for (let i = 1; i <= 100; i++) {
@@ -690,9 +637,6 @@
     });
     updateSeatFromSelect();
 
-    // ============================================================
-    // 获取座位值
-    // ============================================================
     function getSeatValue() {
         const activeBtn = seatModeGroup.querySelector('.mode-btn.active');
         if (activeBtn && activeBtn.dataset.mode === 'manual') {
@@ -704,9 +648,6 @@
         }
     }
 
-    // ============================================================
-    // 票号生成
-    // ============================================================
     function generateTicketNo() {
         const en = getVal(englishName) || 'MOVIE';
         let dateStr = viewDate.value;
@@ -727,9 +668,6 @@
     englishName.addEventListener('input', updateTicketNo);
     viewDate.addEventListener('input', updateTicketNo);
 
-    // ============================================================
-    // 结束时间自动计算
-    // ============================================================
     function autoCalculateEndTime() {
         const start = viewStart.value;
         const dur = parseInt(duration.value, 10);
@@ -745,9 +683,6 @@
     viewStart.addEventListener('input', autoCalculateEndTime);
     duration.addEventListener('input', autoCalculateEndTime);
 
-    // ============================================================
-    // 输入监听
-    // ============================================================
     const inputs = [filmTitle, releaseYearManual, releaseYearSelect,
         englishName, country, director, cast, duration,
         releaseDate, cinema, viewDate, viewStart, viewEnd,
@@ -760,18 +695,12 @@
     releaseDate.addEventListener('change', renderTicket);
     viewDate.addEventListener('change', renderTicket);
 
-    // ============================================================
-    // 主字体颜色选择器
-    // ============================================================
     fontColorPicker.addEventListener('input', function() {
         const newColor = this.value;
         for (let key in TEXT_COLORS) TEXT_COLORS[key] = newColor;
         renderTicket();
     });
 
-    // ============================================================
-    // 字体系统
-    // ============================================================
     const FONT_NAME_MAP = {
         'Microsoft YaHei': '微软雅黑', 'SimSun': '宋体', 'SimHei': '黑体',
         'KaiTi': '楷体', 'FangSong': '仿宋', 'STSong': '华文宋体',
@@ -860,9 +789,6 @@
     });
     document.getElementById('fontUploadArea').addEventListener('click', () => fontFileInput.click());
 
-    // ============================================================
-    // 版权弹窗
-    // ============================================================
     const modal = document.getElementById('copyrightModal');
     const trigger = document.getElementById('copyrightTrigger');
     const closeBtn = document.getElementById('modalCloseBtn');
@@ -870,9 +796,6 @@
     closeBtn.addEventListener('click', () => modal.classList.remove('active'));
     modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
 
-    // ============================================================
-    // 绘制工具函数
-    // ============================================================
     function drawText(text, x, y, fontSize, colorKey, weight = 'normal', maxWidth = Infinity) {
         if (!text) return;
         const color = TEXT_COLORS[colorKey] || '#000000';
@@ -934,9 +857,6 @@
         ctx.restore();
     }
 
-    // ============================================================
-    // 绘制背景（中心缩放 cover）
-    // ============================================================
     function drawBackground() {
         const blurAmount = parseFloat(bgBlurAmount.value) || 0;
         const solidColor = bgSolidColor.value || '#f0f0f0';
@@ -984,16 +904,10 @@
         }
     }
 
-    // ============================================================
-    // 渲染主函数
-    // ============================================================
     function renderTicket() {
         ctx.clearRect(0, 0, W, H);
-
-        // ---- 背景（中心缩放 + 模糊 + 纯色） ----
         drawBackground();
 
-        // ---- 海报 ----
         if (posterImage) {
             const img = posterImage;
             const p = POSTER;
@@ -1022,7 +936,6 @@
             ctx.strokeRect(p.x, p.y, p.w, p.h);
         }
 
-        // ---- 右侧信息 ----
         let releaseDay = '', releaseMonthAbbr = '', releaseYear2 = '';
         if (releaseDate.value) {
             const parts = releaseDate.value.split('-');
@@ -1062,55 +975,45 @@
         const centerX = RIGHT_X + RIGHT_WIDTH / 2;
         let y = RIGHT_Y;
 
-        // 片名
         y += 13;
         drawTitle(data.title, data.releaseYear, centerX, y, RIGHT_WIDTH - 20);
         y += 25;
 
-        // 外文名
         y += 5;
         const enText = data.englishName;
         const enWidth = ctx.measureText(enText).width || 112;
         drawText(enText, centerX - enWidth/2, y, 17, 'english', 'bold', RIGHT_WIDTH);
         y += 17;
 
-        // 分隔线1
         y += 5;
         drawSeparator(y);
         y += 6;
 
-        // 【国家】导演
         y += 9;
         drawText('【' + data.country + '】导演：' + data.director, TEXT_START_X, y, 17, 'director', 'bold', RIGHT_WIDTH);
         y += 18;
 
-        // 主演
         y += 5;
         drawText('主演：' + data.cast, TEXT_START_X, y, 17, 'cast', 'bold', RIGHT_WIDTH);
         y += 18;
 
-        // 上映日期 + 时长
         y += 6;
         drawText(data.releaseDateFormatted + '   ' + data.duration + '分钟', TEXT_START_X, y, 17, 'releaseDate', 'bold', RIGHT_WIDTH);
         y += 17;
 
-        // 分隔线2
         y += 9;
         drawSeparator(y);
         y += 6;
 
-        // 影院名称
         y += 10;
         drawText(data.cinema, TEXT_START_X, y, 17, 'cinema', 'bold', RIGHT_WIDTH);
         y += 17;
 
-        // 日期标签
         y += 9;
         drawText('日期：', TEXT_START_X, y, 17, 'label', 'bold');
         drawText('时间：', TEXT_START_X + 148, y, 17, 'label', 'bold');
         y += 17;
 
-        // 日期值 + 时间值
         y += 5;
         const dateValX = RIGHT_X + 17;
         const timeValX = RIGHT_X + 165;
@@ -1118,14 +1021,12 @@
         drawText(data.viewStart + '-' + data.viewEnd, timeValX, y, 17, 'viewTime', 'bold', 100);
         y += 17;
 
-        // 影厅/座位/票价标签
         y += 14;
         drawText('影厅：', TEXT_START_X, y, 17, 'label', 'bold');
         drawText('座位：', TEXT_START_X + 95, y, 17, 'label', 'bold');
         drawText('票价：', TEXT_START_X + 206, y, 17, 'label', 'bold');
         y += 17;
 
-        // 值
         y += 7;
         const hallValX = RIGHT_X + 17;
         const seatValX = RIGHT_X + 110;
@@ -1135,22 +1036,18 @@
         drawText('￥' + data.price, priceValX, y, 17, 'price', 'bold');
         y += 17;
 
-        // 分隔线3
         y += 7;
         drawSeparator(y);
         y += 6;
 
-        // 票号标签
         y += 10;
         drawText('票号：', TEXT_START_X, y, 17, 'label', 'bold');
         y += 17;
 
-        // 票号值
         y += 6;
         drawText(data.ticketNo, TEXT_START_X, y, 17, 'ticketNo', 'bold', RIGHT_WIDTH);
         y += 17;
 
-        // 二维码
         y += 14;
         if (qrImage) {
             const qrSize = 118;
@@ -1178,12 +1075,10 @@
         }
         y += 118;
 
-        // 分隔线4
         y += 11;
         drawSeparator(y);
         y += 6;
 
-        // logo
         y += 14;
         if (logoImage) {
             const logoWidth = 264;
@@ -1215,7 +1110,6 @@
             ctx.strokeRect(logoX, logoY, logoWidth, logoHeight);
         }
 
-        // ---- 水印文字 ----
         if (data.watermark) {
             const wmColor = watermarkColor.value || '#000000';
             const wmOpacity = parseFloat(watermarkOpacity.value) || 0.3;
@@ -1233,7 +1127,6 @@
             ctx.restore();
         }
 
-        // ---- 形状蒙版裁剪 ----
         const mask = shapeMaskImage || null;
         if (mask) {
             ctx.save();
@@ -1255,7 +1148,6 @@
             return;
         }
 
-        // ---- 版权水印 ----
         if (ENABLE_WATERMARK && (bgImage || DEFAULT_BG_IMAGE)) {
             ctx.save();
             ctx.textAlign = 'center';
@@ -1267,9 +1159,6 @@
         }
     }
 
-    // ============================================================
-    // 下载
-    // ============================================================
     document.getElementById('downloadBtn').addEventListener('click', function() {
         const link = document.createElement('a');
         link.download = '电影票根_' + new Date().getTime() + '.png';
@@ -1277,9 +1166,6 @@
         link.click();
     });
 
-    // ============================================================
-    // 初始化
-    // ============================================================
     if (DEFAULT_SHAPE_MASK) {
         const img = new Image();
         img.onload = function() {
