@@ -24,19 +24,23 @@
         .form-group input:focus, .form-group select:focus { outline: none; border-color: #e11d48; box-shadow: 0 0 0 3px rgba(225,29,72,0.15); }
         .form-row { display: flex; gap: 8px; }
         .form-row .form-group { flex: 1; }
-        .file-upload { border: 2px dashed #cbd5e1; border-radius: 12px; padding: 16px; text-align: center; cursor: pointer; transition: 0.2s; background: #fafbfc; position: relative; }
-        .file-upload:hover { border-color: #e11d48; background: #fef2f2; }
-        .file-upload img { max-width: 100%; max-height: 100px; border-radius: 8px; margin-top: 6px; }
-        .file-upload input { display: none; }
+        /* 上传控件：使用 label 包裹，点击 label 触发 input */
+        .upload-label { display: block; padding: 16px; border: 2px dashed #cbd5e1; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.2s; background: #fafbfc; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+        .upload-label:hover { border-color: #e11d48; background: #fef2f2; }
+        .upload-label input[type="file"] { display: none; }
+        .upload-label img { max-width: 100%; max-height: 100px; border-radius: 8px; margin-top: 6px; display: none; }
+        .upload-label .preview-img { display: none; }
         .upload-wrapper { display: flex; align-items: center; gap: 10px; }
-        .upload-wrapper .file-upload { flex: 1; }
-        .clear-btn { padding: 6px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fcfcfd; cursor: pointer; transition: 0.2s; font-size: 13px; color: #64748b; white-space: nowrap; }
+        .upload-wrapper .upload-label { flex: 1; }
+        .clear-btn { padding: 6px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fcfcfd; cursor: pointer; transition: 0.2s; font-size: 13px; color: #64748b; white-space: nowrap; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
         .clear-btn:hover { border-color: #e11d48; background: #fef2f2; color: #e11d48; }
         .clear-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-        input[type="color"] { width: 100%; height: 44px; padding: 4px; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; }
+        /* 颜色选择器用 label 包裹 */
+        .color-label { display: block; width: 100%; padding: 8px; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; background: #fcfcfd; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+        .color-label input[type="color"] { width: 100%; height: 44px; padding: 0; border: none; cursor: pointer; background: transparent; }
         input[type="range"] { width: 100%; }
         select#fontFamilySelect { width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; background: #fcfcfd; }
-        .btn-download { width: 100%; padding: 14px; background: #e11d48; color: white; border: none; border-radius: 16px; font-size: 20px; font-weight: 700; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 12px rgba(225,29,72,0.3); margin-top: 10px; }
+        .btn-download { width: 100%; padding: 14px; background: #e11d48; color: white; border: none; border-radius: 16px; font-size: 20px; font-weight: 700; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 12px rgba(225,29,72,0.3); margin-top: 10px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
         .btn-download:hover { background: #be123c; transform: scale(1.01); }
         .preview-panel { flex: 1 1 420px; min-width: 340px; background: #f8fafc; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .preview-panel .hint { color: #94a3b8; font-size: 14px; margin-bottom: 16px; }
@@ -56,13 +60,13 @@
         .modal-box .highlight { background: #f1f5f9; padding: 12px 16px; border-radius: 12px; font-size: 14px; color: #334155; margin: 16px 0; }
         .modal-box .highlight a { color: #e11d48; text-decoration: none; font-weight: 600; }
         .modal-box .highlight a:hover { text-decoration: underline; }
-        .modal-close { width: 100%; padding: 12px; background: #f1f5f9; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; color: #334155; cursor: pointer; transition: 0.2s; margin-top: 8px; }
+        .modal-close { width: 100%; padding: 12px; background: #f1f5f9; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; color: #334155; cursor: pointer; transition: 0.2s; margin-top: 8px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
         .modal-close:hover { background: #e2e8f0; }
         @media (max-width: 760px) { .app { flex-direction: column; padding: 20px; } }
         input[type="date"], input[type="time"] { width: 100%; }
         input[list] { width: 100%; }
         .btn-group { display: flex; gap: 8px; }
-        .btn-group .mode-btn { flex: 1; padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fcfcfd; cursor: pointer; transition: 0.2s; font-size: 14px; font-weight: 500; color: #334155; text-align: center; }
+        .btn-group .mode-btn { flex: 1; padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fcfcfd; cursor: pointer; transition: 0.2s; font-size: 14px; font-weight: 500; color: #334155; text-align: center; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
         .btn-group .mode-btn.active { border-color: #e11d48; background: #fff0f0; color: #e11d48; font-weight: 600; }
         .btn-group .mode-btn:hover { background: #f1f5f9; }
         .range-container { display: flex; align-items: center; gap: 10px; }
@@ -84,8 +88,8 @@
             .form-group { margin-bottom: 8px; }
             .form-group label { font-size: 12px; }
             .form-group input, .form-group select { padding: 6px 10px; font-size: 13px; }
-            .file-upload { padding: 10px; }
-            .file-upload img { max-height: 60px; }
+            .upload-label { padding: 12px; }
+            .upload-label img { max-height: 50px; }
             .btn-download { padding: 12px; font-size: 18px; margin-top: 8px; }
             .preview-panel { flex: none; width: 100%; padding: 12px; min-width: unset; }
             .preview-panel .hint { font-size: 12px; margin-bottom: 10px; }
@@ -96,12 +100,14 @@
             .btn-group .mode-btn { font-size: 12px; padding: 4px 8px; }
             .range-container input[type="range"] { height: 6px; }
             .range-container span { font-size: 12px; min-width: 30px; }
-            .upload-wrapper .file-upload span { font-size: 12px; }
+            .upload-wrapper .upload-label span { font-size: 12px; }
             .clear-btn { font-size: 11px; padding: 4px 10px; }
             .status-badge { font-size: 10px; padding: 1px 8px; }
             .status-text { font-size: 10px; }
             .modal-box { max-width: 95%; padding: 20px; }
             .preview-panel canvas { max-width: 100%; }
+            /* 颜色选择器在手机上加大 */
+            .color-label input[type="color"] { height: 50px; }
         }
         @media (max-width: 480px) {
             .app { padding: 12px; gap: 12px; }
@@ -119,14 +125,15 @@
             <span class="free-tag">✨ 永久免费 · 无需付费</span>
         </div>
 
+        <!-- 背景图 -->
         <div class="form-group">
             <label>🖼️ 上传你的背景图</label>
             <div class="upload-wrapper">
-                <div class="file-upload" id="bgUploadArea">
+                <label for="bgInput" class="upload-label" id="bgUploadArea">
                     <span>点击上传背景图片</span>
                     <input type="file" id="bgInput" accept="image/*">
-                    <img id="bgPreview" style="display:none;" alt="背景预览">
-                </div>
+                    <img id="bgPreview" class="preview-img" alt="背景预览">
+                </label>
                 <button class="clear-btn" id="bgClearBtn" disabled>清除</button>
             </div>
         </div>
@@ -142,14 +149,15 @@
             </div>
         </div>
 
+        <!-- 形状蒙版 -->
         <div class="form-group">
             <label>🔲 上传形状蒙版（可选）</label>
             <div class="upload-wrapper">
-                <div class="file-upload" id="shapeUploadArea">
+                <label for="shapeInput" class="upload-label" id="shapeUploadArea">
                     <span>点击上传形状蒙版</span>
                     <input type="file" id="shapeInput" accept="image/png">
-                    <img id="shapePreview" style="display:none;" alt="形状预览">
-                </div>
+                    <img id="shapePreview" class="preview-img" alt="形状预览">
+                </label>
                 <button class="clear-btn" id="shapeClearBtn" disabled>清除</button>
             </div>
             <div style="margin-top:6px;">
@@ -158,42 +166,46 @@
             </div>
         </div>
 
+        <!-- 电影海报 -->
         <div class="form-group">
             <label>🎬 电影海报</label>
             <div class="upload-wrapper">
-                <div class="file-upload" id="posterUploadArea">
+                <label for="posterInput" class="upload-label" id="posterUploadArea">
                     <span>点击选择海报图片</span>
                     <input type="file" id="posterInput" accept="image/*">
-                    <img id="posterPreview" style="display:none;" alt="海报预览">
-                </div>
+                    <img id="posterPreview" class="preview-img" alt="海报预览">
+                </label>
                 <button class="clear-btn" id="posterClearBtn" disabled>清除</button>
             </div>
         </div>
 
+        <!-- 二维码 -->
         <div class="form-group">
             <label>📱 上传二维码</label>
             <div class="upload-wrapper">
-                <div class="file-upload" id="qrUploadArea">
+                <label for="qrInput" class="upload-label" id="qrUploadArea">
                     <span>点击上传二维码图片</span>
                     <input type="file" id="qrInput" accept="image/*">
-                    <img id="qrPreview" style="display:none;" alt="二维码预览">
-                </div>
+                    <img id="qrPreview" class="preview-img" alt="二维码预览">
+                </label>
                 <button class="clear-btn" id="qrClearBtn" disabled>清除</button>
             </div>
         </div>
 
+        <!-- logo -->
         <div class="form-group">
             <label>🏷️ 上传 logo/纪念图（264×120）</label>
             <div class="upload-wrapper">
-                <div class="file-upload" id="logoUploadArea">
+                <label for="logoInput" class="upload-label" id="logoUploadArea">
                     <span>点击上传 logo/纪念图</span>
                     <input type="file" id="logoInput" accept="image/*">
-                    <img id="logoPreview" style="display:none;" alt="logo预览">
-                </div>
+                    <img id="logoPreview" class="preview-img" alt="logo预览">
+                </label>
                 <button class="clear-btn" id="logoClearBtn" disabled>清除</button>
             </div>
         </div>
 
+        <!-- 字体和颜色 -->
         <div class="form-group">
             <label>🔤 选择字体</label>
             <select id="fontFamilySelect">
@@ -202,7 +214,7 @@
         </div>
         <div class="form-group">
             <label>📂 上传自定义字体</label>
-            <div class="file-upload" id="fontUploadArea">
+            <div class="upload-label" id="fontUploadArea">
                 <span>点击选择字体文件</span>
                 <input type="file" id="fontFileInput" accept=".ttf,.otf,.woff,.woff2">
                 <span id="fontUploadStatus" style="display:block; font-size:12px; color:#999; margin-top:4px;"></span>
@@ -210,9 +222,12 @@
         </div>
         <div class="form-group">
             <label>🎨 主字体颜色</label>
-            <input type="color" id="fontColorPicker" value="#000000">
+            <label for="fontColorPicker" class="color-label">
+                <input type="color" id="fontColorPicker" value="#000000">
+            </label>
         </div>
 
+        <!-- 文字信息 -->
         <div class="form-group"><label>电影片名</label><input type="text" id="filmTitle" placeholder="电影名称"></div>
         <div class="form-group">
             <label>上映年份输入方式</label>
@@ -286,13 +301,16 @@
         </div>
         <div class="form-group"><label>票号（自动生成）</label><input type="text" id="ticketNo" value=""></div>
 
+        <!-- 水印 -->
         <div class="form-group">
             <label>📝 水印文字</label>
             <input type="text" id="watermarkText" value="本票根由🎬 棠荞票根工坊生成">
         </div>
         <div class="form-group">
             <label>水印颜色</label>
-            <input type="color" id="watermarkColor" value="#000000">
+            <label for="watermarkColor" class="color-label">
+                <input type="color" id="watermarkColor" value="#000000">
+            </label>
         </div>
         <div class="form-group">
             <label>水印透明度</label>
@@ -318,6 +336,7 @@
     </div>
 </div>
 
+<!-- 版权弹窗 -->
 <div class="modal-overlay" id="copyrightModal">
     <div class="modal-box">
         <h3>🎫 棠荞票根工坊</h3>
@@ -361,8 +380,6 @@
 
     const LEFT_MARGIN = 16;
     const TEXT_START_X = RIGHT_X + LEFT_MARGIN;
-
-    // 右侧内容最大宽度（从 TEXT_START_X 到右边界，留安全余量）
     const CONTENT_MAX_WIDTH = RIGHT_WIDTH - LEFT_MARGIN - 5;
 
     const TEXT_COLORS = {
@@ -376,6 +393,7 @@
 
     let bgImage = null, posterImage = null, qrImage = null, logoImage = null, shapeMaskImage = null;
 
+    // DOM 元素
     const bgInput = document.getElementById('bgInput');
     const bgPreview = document.getElementById('bgPreview');
     const bgClearBtn = document.getElementById('bgClearBtn');
@@ -435,6 +453,7 @@
     const fontFileInput = document.getElementById('fontFileInput');
     const fontUploadStatus = document.getElementById('fontUploadStatus');
 
+    // ===== 清除功能 =====
     function setupClear(inputEl, previewEl, clearBtn, clearCallback) {
         inputEl.addEventListener('change', function() {
             clearBtn.disabled = !(this.files && this.files.length > 0);
@@ -449,10 +468,14 @@
         });
     }
 
-    function setupUploadWithClear(inputEl, previewEl, clearBtn, callback) {
+    // ===== 上传事件（使用 change 事件监听，由 label 触发） =====
+    function setupUpload(inputEl, previewEl, clearBtn, callback) {
         inputEl.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) { clearBtn.disabled = true; return; }
+            const file = this.files[0];
+            if (!file) {
+                clearBtn.disabled = true;
+                return;
+            }
             clearBtn.disabled = false;
             const reader = new FileReader();
             reader.onload = function(ev) {
@@ -469,11 +492,11 @@
         });
     }
 
-    setupUploadWithClear(bgInput, bgPreview, bgClearBtn, (img) => { bgImage = img; });
+    setupUpload(bgInput, bgPreview, bgClearBtn, (img) => { bgImage = img; });
     setupClear(bgInput, bgPreview, bgClearBtn, () => { bgImage = null; });
 
     shapeInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
+        const file = this.files[0];
         if (!file) { shapeClearBtn.disabled = true; return; }
         shapeClearBtn.disabled = false;
         updateShapeStatus('loading', '正在加载形状蒙版...');
@@ -498,20 +521,40 @@
         updateShapeStatus('not-loaded', '已清除形状蒙版');
     });
 
-    setupUploadWithClear(posterInput, posterPreview, posterClearBtn, (img) => { posterImage = img; });
+    setupUpload(posterInput, posterPreview, posterClearBtn, (img) => { posterImage = img; });
     setupClear(posterInput, posterPreview, posterClearBtn, () => { posterImage = null; });
 
-    setupUploadWithClear(qrInput, qrPreview, qrClearBtn, (img) => { qrImage = img; });
+    setupUpload(qrInput, qrPreview, qrClearBtn, (img) => { qrImage = img; });
     setupClear(qrInput, qrPreview, qrClearBtn, () => { qrImage = null; });
 
-    setupUploadWithClear(logoInput, logoPreview, logoClearBtn, (img) => { logoImage = img; });
+    setupUpload(logoInput, logoPreview, logoClearBtn, (img) => { logoImage = img; });
     setupClear(logoInput, logoPreview, logoClearBtn, () => { logoImage = null; });
 
-    document.getElementById('bgUploadArea').addEventListener('click', () => bgInput.click());
-    document.getElementById('shapeUploadArea').addEventListener('click', () => shapeInput.click());
-    document.getElementById('posterUploadArea').addEventListener('click', () => posterInput.click());
-    document.getElementById('qrUploadArea').addEventListener('click', () => qrInput.click());
-    document.getElementById('logoUploadArea').addEventListener('click', () => logoInput.click());
+    // 自定义字体上传（非图片，特殊处理）
+    fontFileInput.addEventListener('change', async function(e) {
+        const file = this.files[0];
+        if (!file) return;
+        fontUploadStatus.textContent = '⏳ 加载中...';
+        try {
+            const arrayBuffer = await file.arrayBuffer();
+            const fontName = file.name.replace(/\.[^.]+$/, '');
+            const font = new FontFace(fontName, arrayBuffer);
+            await font.load();
+            document.fonts.add(font);
+            const opt = document.createElement('option');
+            opt.value = fontName;
+            opt.textContent = (FONT_NAME_MAP[fontName] || fontName) + ' (自定义)';
+            fontSelect.appendChild(opt);
+            fontSelect.value = fontName;
+            currentFontFamily = fontName;
+            renderTicket();
+            fontUploadStatus.textContent = '✅ 加载成功：' + fontName;
+        } catch (err) {
+            fontUploadStatus.textContent = '❌ 加载失败';
+        }
+    });
+
+    // 上传区域点击 label 会自动触发，不需要额外事件
 
     function updateShapeStatus(status, msg) {
         shapeStatus.className = 'status-badge ' + status;
@@ -735,30 +778,6 @@
             : selected;
         renderTicket();
     });
-
-    fontFileInput.addEventListener('change', async function(e) {
-        const file = e.target.files[0];
-        if (!file) return;
-        fontUploadStatus.textContent = '⏳ 加载中...';
-        try {
-            const arrayBuffer = await file.arrayBuffer();
-            const fontName = file.name.replace(/\.[^.]+$/, '');
-            const font = new FontFace(fontName, arrayBuffer);
-            await font.load();
-            document.fonts.add(font);
-            const opt = document.createElement('option');
-            opt.value = fontName;
-            opt.textContent = (FONT_NAME_MAP[fontName] || fontName) + ' (自定义)';
-            fontSelect.appendChild(opt);
-            fontSelect.value = fontName;
-            currentFontFamily = fontName;
-            renderTicket();
-            fontUploadStatus.textContent = '✅ 加载成功：' + fontName;
-        } catch (err) {
-            fontUploadStatus.textContent = '❌ 加载失败';
-        }
-    });
-    document.getElementById('fontUploadArea').addEventListener('click', () => fontFileInput.click());
 
     const modal = document.getElementById('copyrightModal');
     const trigger = document.getElementById('copyrightTrigger');
@@ -992,7 +1011,7 @@
 
         // ---- 8. 影院名称 ----
         y += 10;
-        drawText(data.cinema, TEXT_START_X, y, 17, 'cinema', 'bold', CONTENT_MAX_WIDTH);
+        drawText(data.cinema, TEXT_START_X, y, 17, 'cinema', 'bold', CONTENT_MAX_WIDTH - 10);
         y += 17;
 
         // ---- 9. 日期标签行 ----
