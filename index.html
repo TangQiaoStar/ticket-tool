@@ -12,7 +12,7 @@
             font-style: normal;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #f2f4f8; font-family: 'Segoe UI', Roboto, sans-serif; display: flex; justify-content: center; padding: 40px 20px; }
+        body { background: #f2f4f8; font-family: 'Segoe UI', Roboto, sans-serif; display: flex; justify-content: center; padding: 20px; min-height: 100vh; }
         .app { max-width: 1100px; width: 100%; background: white; border-radius: 32px; box-shadow: 0 20px 40px -12px rgba(0,0,0,0.2); padding: 30px; display: flex; flex-wrap: wrap; gap: 30px; }
         .form-panel { flex: 1 1 380px; min-width: 280px; max-height: 90vh; overflow-y: auto; padding-right: 5px; }
         .form-panel h2 { font-size: 26px; margin-bottom: 6px; color: #0f172a; }
@@ -73,47 +73,41 @@
         .status-badge.not-loaded { background: #fee2e2; color: #991b1b; }
         .status-badge.loading { background: #fef3c7; color: #92400e; }
         .status-text { font-size: 12px; color: #64748b; margin-left: 8px; }
-		/* ===== 移动端适配（旋转 + 浮窗） ===== */
-		@media (max-width: 768px) {
-		    body { padding: 0; background: #1a1a2e; overflow: hidden; height: 100vh; display: flex; align-items: center; justify-content: center; }
-		    .app-wrapper { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; transform: rotate(90deg) scale(0.85); transform-origin: center; }
-		    .app { max-width: 750px; max-height: 420px; width: 750px; height: 420px; overflow-y: auto; padding: 20px 24px; gap: 16px; border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); background: #ffffff; transform: scale(1); }
-		    .app::-webkit-scrollbar { width: 4px; }
-		    .app::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-		    .form-panel { flex: 1 1 50%; min-width: 200px; max-height: 360px; overflow-y: auto; padding-right: 4px; }
-		    .form-panel h2 { font-size: 18px; }
-		    .form-panel .sub { font-size: 11px; margin-bottom: 10px; }
-		    .form-group { margin-bottom: 6px; }
-		    .form-group label { font-size: 10px; }
-		    .form-group input, .form-group select { padding: 4px 8px; font-size: 11px; }
-		    .file-upload { padding: 8px; }
-		    .file-upload img { max-height: 50px; }
-		    .btn-download { padding: 8px; font-size: 14px; margin-top: 4px; }
-		    .preview-panel { flex: 1 1 45%; min-width: 180px; padding: 10px; }
-		    .preview-panel .hint { font-size: 11px; margin-bottom: 6px; }
-		    canvas { max-width: 100%; height: auto; border-radius: 8px; }
-		    .size-info { font-size: 9px; margin-top: 4px; }
-		    .footer { font-size: 10px; margin-top: 6px; padding-top: 6px; }
-		    .footer .tag { font-size: 9px; }
-		    .modal-box { max-width: 90%; padding: 20px; }
-		    .btn-group .mode-btn { font-size: 11px; padding: 3px 8px; }
-		    .range-container input[type="range"] { height: 4px; }
-		    .range-container span { font-size: 11px; min-width: 30px; }
-		    .upload-wrapper .file-upload span { font-size: 11px; }
-		    .clear-btn { font-size: 10px; padding: 2px 10px; }
-		    .status-badge { font-size: 10px; padding: 1px 6px; }
-		    .status-text { font-size: 10px; }
-		    .form-group.hide-on-mobile { display: none; }
-		}
-		@media (max-width: 480px) {
-		    .app { max-width: 650px; max-height: 360px; width: 650px; height: 360px; padding: 14px 16px; gap: 10px; }
-		    .app-wrapper { transform: rotate(90deg) scale(0.75); }
-		}
-		.drag-handle { display: none; }
-		@media (max-width: 768px) {
-		    .drag-handle { display: block; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); width: 60px; height: 6px; background: rgba(255,255,255,0.3); border-radius: 4px; z-index: 999; pointer-events: none; }
-		    .drag-handle::after { content: '棠荞票根'; color: rgba(255,255,255,0.2); font-size: 10px; display: block; text-align: center; margin-top: 8px; }
-		}
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            body { padding: 10px; background: #f2f4f8; }
+            .app { flex-direction: column; padding: 16px; gap: 16px; border-radius: 20px; max-height: none; }
+            .form-panel { max-height: none; overflow-y: visible; flex: none; width: 100%; padding-right: 0; }
+            .form-panel h2 { font-size: 20px; }
+            .form-panel .sub { font-size: 12px; margin-bottom: 14px; }
+            .form-group { margin-bottom: 8px; }
+            .form-group label { font-size: 12px; }
+            .form-group input, .form-group select { padding: 6px 10px; font-size: 13px; }
+            .file-upload { padding: 10px; }
+            .file-upload img { max-height: 60px; }
+            .btn-download { padding: 12px; font-size: 18px; margin-top: 8px; }
+            .preview-panel { flex: none; width: 100%; padding: 12px; min-width: unset; }
+            .preview-panel .hint { font-size: 12px; margin-bottom: 10px; }
+            canvas { max-width: 100%; height: auto; border-radius: 8px; }
+            .size-info { font-size: 11px; }
+            .footer { font-size: 11px; margin-top: 10px; padding-top: 10px; }
+            .footer .tag { font-size: 10px; }
+            .btn-group .mode-btn { font-size: 12px; padding: 4px 8px; }
+            .range-container input[type="range"] { height: 6px; }
+            .range-container span { font-size: 12px; min-width: 30px; }
+            .upload-wrapper .file-upload span { font-size: 12px; }
+            .clear-btn { font-size: 11px; padding: 4px 10px; }
+            .status-badge { font-size: 10px; padding: 1px 8px; }
+            .status-text { font-size: 10px; }
+            .modal-box { max-width: 95%; padding: 20px; }
+            .preview-panel canvas { max-width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .app { padding: 12px; gap: 12px; }
+            .form-panel h2 { font-size: 18px; }
+            .btn-download { font-size: 16px; padding: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -125,7 +119,6 @@
             <span class="free-tag">✨ 永久免费 · 无需付费</span>
         </div>
 
-        <!-- 背景图上传 + 清除 -->
         <div class="form-group">
             <label>🖼️ 上传你的背景图</label>
             <div class="upload-wrapper">
@@ -137,7 +130,6 @@
                 <button class="clear-btn" id="bgClearBtn" disabled>清除</button>
             </div>
         </div>
-        <!-- 纯色背景和模糊 -->
         <div class="form-group">
             <label>纯色背景（无图片时生效）</label>
             <input type="color" id="bgSolidColor" value="#f0f0f0">
@@ -150,12 +142,11 @@
             </div>
         </div>
 
-        <!-- 形状蒙版 + 清除 -->
         <div class="form-group">
-            <label>🔲 上传形状蒙版（可选，PNG透明背景，黑色形状）</label>
+            <label>🔲 上传形状蒙版（可选）</label>
             <div class="upload-wrapper">
                 <div class="file-upload" id="shapeUploadArea">
-                    <span>点击上传形状蒙版（留空则使用默认孔洞形状）</span>
+                    <span>点击上传形状蒙版</span>
                     <input type="file" id="shapeInput" accept="image/png">
                     <img id="shapePreview" style="display:none;" alt="形状预览">
                 </div>
@@ -167,7 +158,6 @@
             </div>
         </div>
 
-        <!-- 电影海报 + 清除 -->
         <div class="form-group">
             <label>🎬 电影海报</label>
             <div class="upload-wrapper">
@@ -180,7 +170,6 @@
             </div>
         </div>
 
-        <!-- 二维码 + 清除 -->
         <div class="form-group">
             <label>📱 上传二维码</label>
             <div class="upload-wrapper">
@@ -193,7 +182,6 @@
             </div>
         </div>
 
-        <!-- logo/纪念图 + 清除 -->
         <div class="form-group">
             <label>🏷️ 上传 logo/纪念图（264×120）</label>
             <div class="upload-wrapper">
@@ -206,7 +194,6 @@
             </div>
         </div>
 
-        <!-- 字体和颜色 -->
         <div class="form-group">
             <label>🔤 选择字体</label>
             <select id="fontFamilySelect">
@@ -226,7 +213,6 @@
             <input type="color" id="fontColorPicker" value="#000000">
         </div>
 
-        <!-- 文字信息 -->
         <div class="form-group"><label>电影片名</label><input type="text" id="filmTitle" placeholder="电影名称"></div>
         <div class="form-group">
             <label>上映年份输入方式</label>
@@ -300,7 +286,6 @@
         </div>
         <div class="form-group"><label>票号（自动生成）</label><input type="text" id="ticketNo" value=""></div>
 
-        <!-- 水印 -->
         <div class="form-group">
             <label>📝 水印文字</label>
             <input type="text" id="watermarkText" value="本票根由🎬 棠荞票根工坊生成">
@@ -333,7 +318,6 @@
     </div>
 </div>
 
-<!-- 版权弹窗 -->
 <div class="modal-overlay" id="copyrightModal">
     <div class="modal-box">
         <h3>🎫 棠荞票根工坊</h3>
@@ -357,9 +341,6 @@
 
 <script>
 (function() {
-    // ============================================================
-    // 用户配置
-    // ============================================================
     const DEFAULT_BG_IMAGE = null;
     const DEFAULT_SHAPE_MASK = 'img/120×60 横板票根-底.png';
     const AUTHOR_NAME = '棠荞';
@@ -367,9 +348,6 @@
 
     let currentFontFamily = "'霞鹜文楷屏幕阅读版', 'PingFang SC', 'Microsoft YaHei', sans-serif";
 
-    // ============================================================
-    // 布局参数
-    // ============================================================
     const canvas = document.getElementById('ticketCanvas');
     const ctx = canvas.getContext('2d');
     const W = 1417, H = 709;
@@ -384,9 +362,9 @@
     const LEFT_MARGIN = 16;
     const TEXT_START_X = RIGHT_X + LEFT_MARGIN;
 
-    // ============================================================
-    // 颜色（主颜色，不含水印）
-    // ============================================================
+    // 右侧内容最大宽度（从 TEXT_START_X 到右边界，留安全余量）
+    const CONTENT_MAX_WIDTH = RIGHT_WIDTH - LEFT_MARGIN - 5;
+
     const TEXT_COLORS = {
         title: '#000000', year: '#000000', english: '#000000',
         country: '#000000', director: '#000000', cast: '#000000',
@@ -396,9 +374,6 @@
         label: '#000000'
     };
 
-    // ============================================================
-    // DOM 引用
-    // ============================================================
     let bgImage = null, posterImage = null, qrImage = null, logoImage = null, shapeMaskImage = null;
 
     const bgInput = document.getElementById('bgInput');
@@ -460,16 +435,9 @@
     const fontFileInput = document.getElementById('fontFileInput');
     const fontUploadStatus = document.getElementById('fontUploadStatus');
 
-    // ============================================================
-    // 清除功能
-    // ============================================================
     function setupClear(inputEl, previewEl, clearBtn, clearCallback) {
         inputEl.addEventListener('change', function() {
-            if (this.files && this.files.length > 0) {
-                clearBtn.disabled = false;
-            } else {
-                clearBtn.disabled = true;
-            }
+            clearBtn.disabled = !(this.files && this.files.length > 0);
         });
         clearBtn.addEventListener('click', function() {
             inputEl.value = '';
@@ -484,10 +452,7 @@
     function setupUploadWithClear(inputEl, previewEl, clearBtn, callback) {
         inputEl.addEventListener('change', function(e) {
             const file = e.target.files[0];
-            if (!file) {
-                clearBtn.disabled = true;
-                return;
-            }
+            if (!file) { clearBtn.disabled = true; return; }
             clearBtn.disabled = false;
             const reader = new FileReader();
             reader.onload = function(ev) {
@@ -522,7 +487,7 @@
                 updateShapeStatus('loaded', '形状蒙版加载成功！');
                 renderTicket();
             };
-            img.onerror = function() { updateShapeStatus('not-loaded', '图片加载失败，请检查文件'); };
+            img.onerror = function() { updateShapeStatus('not-loaded', '图片加载失败'); };
             img.src = ev.target.result;
         };
         reader.onerror = function() { updateShapeStatus('not-loaded', '文件读取失败'); };
@@ -565,8 +530,7 @@
     });
 
     function getVal(el) {
-        if (!el) return '';
-        return el.value || el.placeholder || '';
+        return el ? (el.value || el.placeholder || '') : '';
     }
 
     function setupModeGroup(group, callback) {
@@ -575,32 +539,21 @@
             btn.addEventListener('click', function() {
                 btns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                const mode = this.dataset.mode;
-                callback(mode);
+                callback(this.dataset.mode);
                 renderTicket();
             });
         });
     }
 
     setupModeGroup(yearModeGroup, function(mode) {
-        if (mode === 'manual') {
-            yearManualGroup.style.display = 'block';
-            yearSelectGroup.style.display = 'none';
-        } else {
-            yearManualGroup.style.display = 'none';
-            yearSelectGroup.style.display = 'block';
-        }
+        yearManualGroup.style.display = mode === 'manual' ? 'block' : 'none';
+        yearSelectGroup.style.display = mode === 'select' ? 'block' : 'none';
     });
 
     setupModeGroup(seatModeGroup, function(mode) {
-        if (mode === 'manual') {
-            seatManualGroup.style.display = 'block';
-            seatSelectGroup.style.display = 'none';
-        } else {
-            seatManualGroup.style.display = 'none';
-            seatSelectGroup.style.display = 'block';
-            updateSeatFromSelect();
-        }
+        seatManualGroup.style.display = mode === 'manual' ? 'block' : 'none';
+        seatSelectGroup.style.display = mode === 'select' ? 'block' : 'none';
+        if (mode === 'select') updateSeatFromSelect();
     });
 
     function populateYearSelect() {
@@ -613,9 +566,7 @@
             opt.textContent = year;
             select.appendChild(opt);
         }
-        if (select.querySelector('option[value="2025"]')) {
-            select.value = '2025';
-        }
+        if (select.querySelector('option[value="2025"]')) select.value = '2025';
     }
     populateYearSelect();
 
@@ -624,16 +575,13 @@
         if (activeBtn && activeBtn.dataset.mode === 'manual') {
             return getVal(releaseYearManual);
         } else {
-            const val = releaseYearSelect.value;
-            return val || '选择上映年份';
+            return releaseYearSelect.value || '选择上映年份';
         }
     }
 
     function getMixedOptions() {
         const options = [];
-        for (let i = 1; i <= 100; i++) {
-            options.push({ value: String(i), label: String(i) });
-        }
+        for (let i = 1; i <= 100; i++) options.push({ value: String(i), label: String(i) });
         for (let i = 0; i < 26; i++) {
             const letter = String.fromCharCode(65 + i);
             options.push({ value: letter, label: letter });
@@ -643,8 +591,7 @@
 
     function populateSeatOptions() {
         const opts = getMixedOptions();
-        const rowSelect = seatRow;
-        const colSelect = seatCol;
+        const rowSelect = seatRow, colSelect = seatCol;
         rowSelect.innerHTML = '';
         colSelect.innerHTML = '';
         opts.forEach(opt => {
@@ -663,19 +610,11 @@
     populateSeatOptions();
 
     function updateSeatFromSelect() {
-        const row = seatRow.value;
-        const col = seatCol.value;
-        const seatValue = row + '排' + col + '座';
-        seatManual.dataset.seatValue = seatValue;
+        const row = seatRow.value, col = seatCol.value;
+        seatManual.dataset.seatValue = row + '排' + col + '座';
     }
-    seatRow.addEventListener('change', function() {
-        updateSeatFromSelect();
-        renderTicket();
-    });
-    seatCol.addEventListener('change', function() {
-        updateSeatFromSelect();
-        renderTicket();
-    });
+    seatRow.addEventListener('change', function() { updateSeatFromSelect(); renderTicket(); });
+    seatCol.addEventListener('change', function() { updateSeatFromSelect(); renderTicket(); });
     updateSeatFromSelect();
 
     function getSeatValue() {
@@ -683,9 +622,7 @@
         if (activeBtn && activeBtn.dataset.mode === 'manual') {
             return getVal(seatManual);
         } else {
-            const row = seatRow.value;
-            const col = seatCol.value;
-            return row + '排' + col + '座';
+            return seatRow.value + '排' + seatCol.value + '座';
         }
     }
 
@@ -697,10 +634,7 @@
             return en + parts[0] + parts[1] + parts[2];
         } else {
             const now = new Date();
-            const y = now.getFullYear();
-            const m = String(now.getMonth()+1).padStart(2,'0');
-            const d = String(now.getDate()).padStart(2,'0');
-            return en + y + m + d;
+            return en + now.getFullYear() + String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0');
         }
     }
     function updateTicketNo() {
@@ -715,9 +649,7 @@
         if (start && dur && dur > 0) {
             const [h, m] = start.split(':').map(Number);
             const totalMinutes = h * 60 + m + dur;
-            const endH = Math.floor(totalMinutes / 60);
-            const endM = totalMinutes % 60;
-            const endStr = String(endH).padStart(2,'0') + ':' + String(endM).padStart(2,'0');
+            const endStr = String(Math.floor(totalMinutes / 60)).padStart(2,'0') + ':' + String(totalMinutes % 60).padStart(2,'0');
             viewEnd.value = endStr;
         }
     }
@@ -730,9 +662,7 @@
         hall, seatManual, price, ticketNo, watermarkText, 
         watermarkColor, watermarkOpacity, bgSolidColor, bgBlurAmount];
     inputs.forEach(inp => inp.addEventListener('input', renderTicket));
-    [releaseYearSelect, seatRow, seatCol].forEach(el => {
-        el.addEventListener('change', renderTicket);
-    });
+    [releaseYearSelect, seatRow, seatCol].forEach(el => el.addEventListener('change', renderTicket));
     releaseDate.addEventListener('change', renderTicket);
     viewDate.addEventListener('change', renderTicket);
 
@@ -837,7 +767,8 @@
     closeBtn.addEventListener('click', () => modal.classList.remove('active'));
     modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
 
-    function drawText(text, x, y, fontSize, colorKey, weight = 'normal', maxWidth = Infinity) {
+    // ========== 核心绘制函数 ==========
+    function drawText(text, x, y, fontSize, colorKey, weight = 'normal', maxWidth = Infinity, align = 'left') {
         if (!text) return;
         const color = TEXT_COLORS[colorKey] || '#000000';
         ctx.save();
@@ -847,15 +778,26 @@
         ctx.font = (weight === 'bold' ? 'bold ' : '') + fs + 'px ' + currentFontFamily;
         ctx.fillStyle = color;
         let measured = ctx.measureText(text);
+        
         if (measured.width > maxWidth && maxWidth < Infinity) {
             let newSize = fs;
             while (newSize > 8 && ctx.measureText(text).width > maxWidth) {
                 newSize -= 0.5;
                 ctx.font = (weight === 'bold' ? 'bold ' : '') + newSize + 'px ' + currentFontFamily;
             }
+            const newMeasured = ctx.measureText(text);
+            const newWidth = newMeasured.width;
+            if (align === 'center') {
+                x = x - newWidth / 2;
+            }
+        } else if (align === 'center') {
+            const centerX = x;
+            x = centerX - measured.width / 2;
         }
+        
         ctx.fillText(text, x, y);
         ctx.restore();
+        return fontSize * 1.4;
     }
 
     function drawSeparator(y) {
@@ -864,8 +806,7 @@
         const x = RIGHT_X + (RIGHT_WIDTH - 301) / 2;
         ctx.moveTo(x, y);
         ctx.lineTo(x + 301, y);
-        const baseColor = TEXT_COLORS.label || '#000000';
-        ctx.strokeStyle = baseColor;
+        ctx.strokeStyle = TEXT_COLORS.label || '#000000';
         ctx.lineWidth = 1;
         ctx.stroke();
         ctx.restore();
@@ -930,13 +871,8 @@
             ctx.fillStyle = solidColor;
             ctx.fillRect(0, 0, W, H);
             const img = new Image();
-            img.onload = function() {
-                bgImage = img;
-                renderTicket();
-            };
-            img.onerror = function() {
-                console.warn('默认背景图加载失败，使用纯色');
-            };
+            img.onload = function() { bgImage = img; renderTicket(); };
+            img.onerror = function() { console.warn('默认背景图加载失败，使用纯色'); };
             img.src = DEFAULT_BG_IMAGE;
             return;
         } else {
@@ -945,10 +881,12 @@
         }
     }
 
+    // ===== 核心渲染函数 =====
     function renderTicket() {
         ctx.clearRect(0, 0, W, H);
         drawBackground();
 
+        // 海报
         if (posterImage) {
             const img = posterImage;
             const p = POSTER;
@@ -958,13 +896,13 @@
             if (imgAspect > targetAspect) {
                 drawH = p.h;
                 drawW = p.h * imgAspect;
-                dx = p.x + (p.w - drawW)/2;
+                dx = p.x + (p.w - drawW) / 2;
                 dy = p.y;
             } else {
                 drawW = p.w;
                 drawH = p.w / imgAspect;
                 dx = p.x;
-                dy = p.y + (p.h - drawH)/2;
+                dy = p.y + (p.h - drawH) / 2;
             }
             ctx.save();
             ctx.beginPath();
@@ -977,6 +915,7 @@
             ctx.strokeRect(p.x, p.y, p.w, p.h);
         }
 
+        // 提取上映日期
         let releaseDay = '', releaseMonthAbbr = '', releaseYear2 = '';
         if (releaseDate.value) {
             const parts = releaseDate.value.split('-');
@@ -1016,83 +955,97 @@
         const centerX = RIGHT_X + RIGHT_WIDTH / 2;
         let y = RIGHT_Y;
 
+        // ---- 1. 片名 ----
         y += 13;
         drawTitle(data.title, data.releaseYear, centerX, y, RIGHT_WIDTH - 20);
         y += 25;
 
+        // ---- 2. 外文名（居中+缩放） ----
         y += 5;
-        const enText = data.englishName;
-        const enWidth = ctx.measureText(enText).width || 112;
-        drawText(enText, centerX - enWidth/2, y, 17, 'english', 'bold', RIGHT_WIDTH);
+        drawText(data.englishName, centerX, y, 17, 'english', 'bold', RIGHT_WIDTH, 'center');
         y += 17;
 
+        // ---- 3. 分隔线1 ----
         y += 5;
         drawSeparator(y);
         y += 6;
 
+        // ---- 4. 【国家】导演 ----
         y += 9;
-        drawText('【' + data.country + '】导演：' + data.director, TEXT_START_X, y, 17, 'director', 'bold', RIGHT_WIDTH);
+        drawText('【' + data.country + '】导演：' + data.director, TEXT_START_X, y, 17, 'director', 'bold', CONTENT_MAX_WIDTH);
         y += 18;
 
+        // ---- 5. 主演 ----
         y += 5;
-        drawText('主演：' + data.cast, TEXT_START_X, y, 17, 'cast', 'bold', RIGHT_WIDTH);
+        drawText('主演：' + data.cast, TEXT_START_X, y, 17, 'cast', 'bold', CONTENT_MAX_WIDTH);
         y += 18;
 
+        // ---- 6. 上映日期 + 时长 ----
         y += 6;
-        drawText(data.releaseDateFormatted + '   ' + data.duration + '分钟', TEXT_START_X, y, 17, 'releaseDate', 'bold', RIGHT_WIDTH);
+        drawText(data.releaseDateFormatted + '   ' + data.duration + '分钟', TEXT_START_X, y, 17, 'releaseDate', 'bold', CONTENT_MAX_WIDTH);
         y += 17;
 
+        // ---- 7. 分隔线2 ----
         y += 9;
         drawSeparator(y);
         y += 6;
 
+        // ---- 8. 影院名称 ----
         y += 10;
-        drawText(data.cinema, TEXT_START_X, y, 17, 'cinema', 'bold', RIGHT_WIDTH);
+        drawText(data.cinema, TEXT_START_X, y, 17, 'cinema', 'bold', CONTENT_MAX_WIDTH);
         y += 17;
 
+        // ---- 9. 日期标签行 ----
         y += 9;
-        drawText('日期：', TEXT_START_X, y, 17, 'label', 'bold');
-        drawText('时间：', TEXT_START_X + 148, y, 17, 'label', 'bold');
+        drawText('日期：', TEXT_START_X, y, 17, 'label', 'bold', 80);
+        drawText('时间：', TEXT_START_X + 148, y, 17, 'label', 'bold', 80);
         y += 17;
 
+        // ---- 10. 日期值 + 时间值（精确限制） ----
         y += 5;
         const dateValX = RIGHT_X + 17;
         const timeValX = RIGHT_X + 165;
-        drawText(data.viewDate, dateValX, y, 17, 'viewDate', 'bold', 93);
-        drawText(data.viewStart + '-' + data.viewEnd, timeValX, y, 17, 'viewTime', 'bold', 100);
+        drawText(data.viewDate, dateValX, y, 17, 'viewDate', 'bold', 148 - 5);
+        drawText(data.viewStart + '-' + data.viewEnd, timeValX, y, 17, 'viewTime', 'bold', RIGHT_WIDTH - 165 - 5);
         y += 17;
 
+        // ---- 11. 影厅/座位/票价标签行 ----
         y += 14;
-        drawText('影厅：', TEXT_START_X, y, 17, 'label', 'bold');
-        drawText('座位：', TEXT_START_X + 95, y, 17, 'label', 'bold');
-        drawText('票价：', TEXT_START_X + 206, y, 17, 'label', 'bold');
+        drawText('影厅：', TEXT_START_X, y, 17, 'label', 'bold', 80);
+        drawText('座位：', TEXT_START_X + 95, y, 17, 'label', 'bold', 80);
+        drawText('票价：', TEXT_START_X + 206, y, 17, 'label', 'bold', 80);
         y += 17;
 
+        // ---- 12. 影厅/座位/票价值（精确限制） ----
         y += 7;
         const hallValX = RIGHT_X + 17;
         const seatValX = RIGHT_X + 110;
         const priceValX = RIGHT_X + 224;
-        drawText(data.hall, hallValX, y, 17, 'hall', 'bold');
-        drawText(data.seat, seatValX, y, 17, 'seat', 'bold');
-        drawText('￥' + data.price, priceValX, y, 17, 'price', 'bold');
+        drawText(data.hall, hallValX, y, 17, 'hall', 'bold', 110 - 17 - 5);
+        drawText(data.seat, seatValX, y, 17, 'seat', 'bold', 224 - 110 - 5);
+        drawText('￥' + data.price, priceValX, y, 17, 'price', 'bold', RIGHT_WIDTH - 224 - 5);
         y += 17;
 
+        // ---- 13. 分隔线3 ----
         y += 7;
         drawSeparator(y);
         y += 6;
 
+        // ---- 14. 票号标签 ----
         y += 10;
-        drawText('票号：', TEXT_START_X, y, 17, 'label', 'bold');
+        drawText('票号：', TEXT_START_X, y, 17, 'label', 'bold', 80);
         y += 17;
 
+        // ---- 15. 票号值 ----
         y += 6;
-        drawText(data.ticketNo, TEXT_START_X, y, 17, 'ticketNo', 'bold', RIGHT_WIDTH);
+        drawText(data.ticketNo, TEXT_START_X, y, 17, 'ticketNo', 'bold', CONTENT_MAX_WIDTH);
         y += 17;
 
+        // ---- 16. 二维码 ----
         y += 14;
         if (qrImage) {
             const qrSize = 118;
-            const qrX = centerX - qrSize/2;
+            const qrX = centerX - qrSize / 2;
             const qrY = y;
             ctx.fillStyle = 'white';
             ctx.fillRect(qrX - 2, qrY - 2, qrSize + 4, qrSize + 4);
@@ -1101,13 +1054,13 @@
             if (imgAspect > 1) {
                 drawW = qrSize;
                 drawH = qrSize / imgAspect;
-                dx = qrX + (qrSize - drawW)/2;
-                dy = qrY + (qrSize - drawH)/2;
+                dx = qrX + (qrSize - drawW) / 2;
+                dy = qrY + (qrSize - drawH) / 2;
             } else {
                 drawH = qrSize;
                 drawW = qrSize * imgAspect;
-                dx = qrX + (qrSize - drawW)/2;
-                dy = qrY + (qrSize - drawH)/2;
+                dx = qrX + (qrSize - drawW) / 2;
+                dy = qrY + (qrSize - drawH) / 2;
             }
             ctx.drawImage(qrImage, dx, dy, drawW, drawH);
             ctx.strokeStyle = '#ccc';
@@ -1116,15 +1069,17 @@
         }
         y += 118;
 
+        // ---- 17. 分隔线4 ----
         y += 11;
         drawSeparator(y);
         y += 6;
 
+        // ---- 18. logo ----
         y += 14;
         if (logoImage) {
             const logoWidth = 264;
             const logoHeight = 120;
-            const logoX = centerX - logoWidth/2;
+            const logoX = centerX - logoWidth / 2;
             const logoY = y;
             ctx.save();
             ctx.beginPath();
@@ -1136,13 +1091,13 @@
             if (imgAspect > targetAspect) {
                 drawH = logoHeight;
                 drawW = logoHeight * imgAspect;
-                dx = logoX + (logoWidth - drawW)/2;
+                dx = logoX + (logoWidth - drawW) / 2;
                 dy = logoY;
             } else {
                 drawW = logoWidth;
                 drawH = logoWidth / imgAspect;
                 dx = logoX;
-                dy = logoY + (logoHeight - drawH)/2;
+                dy = logoY + (logoHeight - drawH) / 2;
             }
             ctx.drawImage(logoImage, dx, dy, drawW, drawH);
             ctx.restore();
@@ -1151,6 +1106,7 @@
             ctx.strokeRect(logoX, logoY, logoWidth, logoHeight);
         }
 
+        // ---- ★ 水印（独立位置） ----
         if (data.watermark) {
             const wmColor = watermarkColor.value || '#000000';
             const wmOpacity = parseFloat(watermarkOpacity.value) || 0.3;
@@ -1168,6 +1124,7 @@
             ctx.restore();
         }
 
+        // ---- 形状蒙版裁剪 ----
         const mask = shapeMaskImage || null;
         if (mask) {
             ctx.save();
@@ -1189,19 +1146,20 @@
             return;
         }
 
+        // ---- 版权水印（底部） ----
         if (ENABLE_WATERMARK && (bgImage || DEFAULT_BG_IMAGE)) {
             ctx.save();
             ctx.textAlign = 'center';
             ctx.textBaseline = 'bottom';
             ctx.fillStyle = 'rgba(0,0,0,0.06)';
             ctx.font = '12px "PingFang SC", "Microsoft YaHei", sans-serif';
-            ctx.fillText('由「' + AUTHOR_NAME + '」免费工具生成', RIGHT_X + RIGHT_WIDTH/2, H - 12);
+            ctx.fillText('由「' + AUTHOR_NAME + '」免费工具生成', RIGHT_X + RIGHT_WIDTH / 2, H - 12);
             ctx.restore();
         }
     }
 
+    // ===== 下载 =====
     document.getElementById('downloadBtn').addEventListener('click', function() {
-        const canvas = document.getElementById('ticketCanvas');
         const isMobile = window.innerWidth <= 768;
         const filename = '电影票根_' + new Date().getTime() + '.png';
         if (isMobile) {
@@ -1224,6 +1182,7 @@
         }
     });
 
+    // ===== 初始化 =====
     if (DEFAULT_SHAPE_MASK) {
         const img = new Image();
         img.onload = function() {
